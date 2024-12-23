@@ -1,10 +1,13 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import AuthContent from '@/components/AuthContent'
 
-export default function Login() {
+export default function index() {
   return (
     <View>
-      <Text>index</Text>
+ 
+      <AuthContent islogin={false}/>
+
     </View>
   )
 }

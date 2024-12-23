@@ -14,11 +14,10 @@ import { useColorScheme } from "@/hooks/useColorScheme";
 
 export default function RootLayout() {
   return (
-    <Stack>
-      <Stack.Screen name="index" options={{ headerShown: false} }  />
-      <Stack.Screen name="home" options={{ headerShown: false} }  />
-      <Stack.Screen name="login" options={{ headerShown: false} }  />
-      <Stack.Screen name="user" options={{ headerShown: false} }  />
-    </Stack>
+    <Stack screenOptions={{ headerTitleAlign: "center" }}>
+    <Stack.Screen name="index" options={{ headerShown: false }} />
+    <Stack.Screen name="login" options={{ headerShown: false }} />
+    <Stack.Screen name="user" options={{ headerTitle: "Profil" ,headerShown: false}} />
+  </Stack>
   );
 }

@@ -7,7 +7,7 @@ export default function index() {
     <View>
       <Text>index</Text>
       <Link href="/user/(tabs)/favori">detaiffffffffffffl</Link>
-      <Link href="/login/Login">LOGIN</Link>
+    
      
 
     </View>
