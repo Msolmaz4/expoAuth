@@ -2,13 +2,20 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import AuthForm from "./AuthForm";
 import Button from "./Button";
+import { useNavigation } from "expo-router";
 
-export default function AuthContent({ islogin }) {
+export default function AuthContent({ islogin, onpressScreen ,onPress}) {
+  console.log(islogin, "islogin");
+
+
+
   return (
     <View style={styles.container}>
-      <AuthForm isLogin={false} />
+      <AuthForm islogin={islogin}  onPress={onPress}/>
       <View>
-        <Button>{islogin ? "Login" : "Register"} </Button>
+        <Button onPress={()=>onpressScreen(islogin)}>
+          {islogin ? "Login" : "Register"}{" "}
+        </Button>
       </View>
     </View>
   );

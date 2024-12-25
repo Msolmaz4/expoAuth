@@ -7,17 +7,15 @@ export default function index() {
   const router = useRouter();
   const onpressScreen = (data: boolean) => {
     console.log(data, "onpressScreen");
-    if (!data) router.push("/register");
-    else router.push("/login");
+    if (data) router.push("/login");
   };
-  const onPress = (data) => {
-    console.log(data.email,data.password, "login deki geleneler");
-  }
-
+  const onPress = ({email,password}) => {
+    console.log(email,password,"onPress");
+  };
 
   return (
     <View>
-      <AuthContent islogin={false} onpressScreen={onpressScreen}  onPress={onPress} />
+      <AuthContent islogin={true} onpressScreen={onpressScreen} onPress ={onPress}/>
     </View>
   );
 }
