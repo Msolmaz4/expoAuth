@@ -1,14 +1,16 @@
 import { StyleSheet, Text, View } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import AuthContent from "@/components/AuthContent";
 import { useNavigation, useRouter } from "expo-router";
-import {  login } from "@/api/data";
+import { login } from "@/api/data";
+import { AuthContext } from "@/store/authContext";
 
 export default function index() {
   const router = useRouter();
-  const [dat, setDat] = useState([]);
+ 
+  const authContext = useContext(AuthContext);
   const onpressScreen = (data: boolean) => {
-    console.log(data, "onpressScreen");
+   // console.log(data, "onpressScreen");
     if (!data) router.push("/register");
     else router.push("/login");
   };
@@ -17,7 +19,8 @@ export default function index() {
     let { email, password } = data;
     email = email.trim();
     password = password.trim();
-    const emailControl = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    const emailControl =
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     if (!emailControl.test(email)) {
       alert("Bitte geben Sie eine gültige E-Mail-Adresse ein");
       return;
@@ -33,21 +36,24 @@ export default function index() {
     console.log(email, password, "login deki geleneler");
     const getData = async () => {
       try {
-        const posts = await login(email,password); 
-        setDat(posts); 
+        const token = await login(email, password);
+        authContext.auth(token)
+        token ? router.push("/user") : alert("Bir hata oluştu");
       } catch (error) {
-        console.error("Veriler alınamadı:", error);
+        alert("Veriler alınamadı:", error);
       }
     };
 
     getData();
-
-  }
-
+  };
 
   return (
     <View>
-      <AuthContent islogin={false} onpressScreen={onpressScreen}  onPress={onPress} />
+      <AuthContent
+        islogin={false}
+        onpressScreen={onpressScreen}
+        onPress={onPress}
+      />
     </View>
   );
 }

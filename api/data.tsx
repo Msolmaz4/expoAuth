@@ -19,17 +19,18 @@ import axios from "axios";
         },
       }
     );
-    console.log(response.data,"GETHSSSSSSSSSS");
-    return response.data; 
+    //console.log(response.data,"GETHSSSSSSSSSS");
+    const token = response.data.idToken
+    return token; 
   } catch (error) {
     console.error("API çağrısı başarısız:", error.response?.data || error.message);
     throw error; // Hata durumunda hata fırlatıyoruz
   }
 };
 
-export async function register(email, password) {
+export  function register(email, password) {
 return  fetchPosts("signUp",email, password);
 }
-export async function login(email, password) {
+export  function login(email, password) {
 return  fetchPosts("signInWithPassword",email, password);
 }
