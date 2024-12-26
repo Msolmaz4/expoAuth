@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
 import AuthContent from "@/components/AuthContent";
 import { useRouter } from "expo-router";
-import { fetchPosts } from "@/api/data";
+import {  register } from "@/api/data";
 
 export default function index() {
   const router = useRouter();
@@ -45,7 +45,7 @@ export default function index() {
       const getData = async () => {
         console.log("Veriler alınıyor...", email, password);
         try {
-          const posts = await fetchPosts(email, password); // API çağrısı
+          const posts = await register(email, password); // API çağrısı
           setDat(posts); // Dönen veriyi sakla
           alert("Kayıt başarılı!"); // Başarı mesajı
         } catch (error) {

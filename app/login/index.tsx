@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import AuthContent from "@/components/AuthContent";
 import { useNavigation, useRouter } from "expo-router";
-import { fetchPosts } from "@/api/data";
+import {  login } from "@/api/data";
 
 export default function index() {
   const router = useRouter();
@@ -33,7 +33,7 @@ export default function index() {
     console.log(email, password, "login deki geleneler");
     const getData = async () => {
       try {
-        const posts = await fetchPosts(email,password); 
+        const posts = await login(email,password); 
         setDat(posts); 
       } catch (error) {
         console.error("Veriler alınamadı:", error);
