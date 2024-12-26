@@ -1,7 +1,8 @@
 import { StyleSheet, Text, View } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Input from "./Input";
 import ButtonAll from "./ButtonAll";
+
 type AuthFormProps = {
   islogin: boolean;
   keyboardType: string; 
@@ -12,6 +13,11 @@ export default function AuthForm({ islogin, keyboardType ,onPress}: AuthFormProp
   const [emailControl, setEmailControl] = useState("");
   const [password, setPassword] = useState("");
   const [passwordControl, setPasswordControl] = useState("");
+
+
+
+
+
   const update = (inputType, enteredValue) => {
     switch (inputType) {
       case "email":
@@ -78,7 +84,7 @@ export default function AuthForm({ islogin, keyboardType ,onPress}: AuthFormProp
      }
 
       <View>
-        <ButtonAll onpress={onPresst}>{islogin ? "Register" : "Login"}</ButtonAll>
+        <ButtonAll onpress={()=>onPresst()}>{islogin ? "Register" : "Login"}</ButtonAll>
       </View>
     </View>
   );
