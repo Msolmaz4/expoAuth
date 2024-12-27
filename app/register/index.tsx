@@ -1,15 +1,13 @@
 import { StyleSheet, Text, View } from "react-native";
-import React, { useState,useContext } from "react";
+import React, { useState, useContext } from "react";
 import AuthContent from "@/components/AuthContent";
 import { useRouter } from "expo-router";
-import {  register } from "@/api/data";
+import { register } from "@/api/data";
 import { AuthContext } from "@/store/authContext";
 
 export default function index() {
   const router = useRouter();
   const authContext = useContext(AuthContext);
-
-
 
   const onpressScreen = (data: boolean) => {
     if (data) router.push("/login");
@@ -48,9 +46,9 @@ export default function index() {
       const getData = async () => {
         console.log("Veriler alınıyor...", email, password);
         try {
-          const tok = await register(email, password); 
-         authContext.auth(tok)
-        
+          const tok = await register(email, password);
+          authContext.auth(tok);
+
           alert("Kayıt başarılı!"); // Başarı mesajı
         } catch (error) {
           console.error("Veriler alınamadı:", error);
@@ -58,7 +56,7 @@ export default function index() {
         }
       };
 
-      getData(); // Asenkron fonksiyonu çağır
+      getData(); 
     } else {
       alert("E-Mail oder Passwort stimmen nicht überein!");
     }
@@ -76,4 +74,3 @@ export default function index() {
 }
 
 const styles = StyleSheet.create({});
-
